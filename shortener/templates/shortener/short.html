@@ -1,0 +1,153 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title%}
+Shortened URL
+{% endblock %}
+{% block css %} 
+{% endblock %}
+
+{% block content %} 
+
+
+    <!-- Intro Header -->
+    <header id="introheader" class="masthead" style=" background: url({% static 'shortener/img/bg13.jpg' %}) no-repeat bottom center scroll; ">
+      <div class="intro-body">
+       <div class="container">
+        <div class="col-lg-8 mx-auto">
+
+
+           
+                 
+
+
+
+
+        {% if msg %}
+          <h2>URL Shortened !! </h2>
+
+          <p>Here's your shortened link.. copy it to your clipboard or share it socially.. </p>
+      
+          {% else %}
+            <h2>Shortened Link already exists !!</h2>
+
+          <p>Here's your shortened link.. copy it to your clipboard or share it socially.. </p>
+      
+
+
+      {% endif %}
+
+ <form method='POST' action="/short/{{obj.shortcode}}/{{ msg|slugify }}">{% csrf_token %} 
+             
+      
+        <div class="row">
+            <div class="col-lg-offset-3 col-lg-12">
+                <div class="input-group">
+                    <span class="input-group-btn">
+                            <button id='copybtn' onclick="copyToClipboard('#id_url')" class="btn btn-secondary" type="button" style="cursor:pointer">Copy</button>
+                    </span>
+                    <input  type="text" name="url" id="id_url" class="form-control" required="" value="{{obj.get_short_url }}" readonly>
+                    
+                     <span class="input-group-btn">
+                        <button id='sharebtn'  onclick="showshbtns('#shbtns')"  class="btn btn-secondary" type="button" style="cursor:pointer">Share</button>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <br>
+        <p>
+  
+        
+    {% if not request.user.is_authenticated %}           
+
+    <p><a href='{% url "login" %}'>Login</a> to add Link to your <a href='/#analytics'>Url Bank</a></p>
+    
+    {% endif %}
+
+    {% if request.user.is_authenticated %}     
+  
+         {% if added_msg %}
+           {{added_msg}}
+           <br/>
+           <a href='{% url "ubank_page" %}'>Here's</a> your Url Bank
+         {% else %}
+    
+         <input name="addbt" id='addbt' class="btn btn-secondary" type="button" style="cursor:pointer" value="Add link to Url Bank"  onclick="showshbtns('#add_name_group')">
+    
+    <div class='row' id="add_name_group" class="input-group" style='display: none;' >
+    
+    <label class="col-lg-offset-3 col-lg-12 col-md-12 col-sm-12"  for="id_tag">Give a tag to your url for future reference..</label>
+    <div class="col-lg-offset-3 col-lg-12 col-md-12 col-sm-12"  >
+    <input class="col-lg-offset-3 col-lg-3 col-md-3 col-sm-3"    type="text"  class="form-control" placeholder="" name="tag" maxlength="15" id="id_tag" required="" minlength="2">
+      <span class="col-lg-offset-3 col-lg-3 col-md-3 col-sm-3" class="input-group-btn">
+
+         <input   name="submit" id='addbtn' class="btn btn-secondary" type="submit" style="cursor:pointer" value="Add">
+        
+      </span>
+      </div>
+    </div>
+{% endif %}
+  
+{% endif %}
+
+
+         <br/>
+         
+
+         </form>
+         {{error_msg}}             <p id='cmsg' style="display: none;">Copied..</p>
+         
+         
+        
+ <!-- <div class="row" >
+  -->       
+          <ul id='shbtns' style='display: none;' class="list-inline banner-social-buttons">
+              <li class="list-inline-item">
+                    <a href="https://twitter.com/home?status= {{ share_string }}" class="btn btn-lg">
+                              <span class="fa fa-twitter fa-fw"> </span>
+                            </a>
+                </li>
+              
+              <li class="list-inline-item">
+                    <a href="http://www.reddit.com/submit?url={{ request.build_absolute_uri }}&title= {{ share_string }}" class="btn btn-lg"> <span class="fa fa-reddit fa-fw"></span>
+               </a>
+
+              </li>
+              <li class="list-inline-item">
+                <a href='https://plus.google.com/share?url={{ request.build_absolute_uri }}' class="btn btn-lg">
+                <span class="fa fa-google-plus fa-fw"></span>
+                  </a>
+              </li>
+
+              <li class="list-inline-item">
+                    <a href="https://www.facebook.com/sharer/sharer.php?u={{ request.build_absolute_uri }}" class="btn btn-lg">
+                        <span class="fa fa-facebook fa-fw"></span>
+                    </a>
+            </li>
+
+           <li class="list-inline-item">
+                <a href="https://www.linkedin.com/shareArticle?mini=true&url={{ request.build_absolute_uri }}&title=Link &summary= {{ share_string }}&source={{ request.build_absolute_uri }}" class="btn btn-lg">
+               <span class="fa fa-linkedin fa-fw"></span>
+                    </a>
+            </li>
+
+            </ul>
+<!--         </div>
+ -->          
+        </div>
+      </div>
+
+      </div>
+    </header>
+
+
+{% endblock %}
+
+
+{% block include_scripts %}
+
+     <script type="text/javascript" src='{% static "shortener/js/index.js"  %}'></script>
+
+
+{% endblock %}
+

@@ -1,0 +1,158 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title%}
+SignUp|{{ block.super }}
+{% endblock %}
+{% block css %} 
+{% endblock %}
+
+{% block content %} 
+
+
+    <!-- Intro Header -->
+    <header id="introheader" class="masthead" style=" background: url({% static 'shortener/img/bg8.jpg' %}) no-repeat bottom center scroll; ">
+      <div class="intro-body">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-8 mx-auto">
+              <!-- <h1 class="brand-heading">utrim.me</h1>
+
+               -->
+               <br/><p class="intro-text"><h2>Sign Up</h2></p>
+
+              
+ 
+            <form method='POST' action=".">{% csrf_token %} 
+                 
+ <!--            <table>
+                {{ form.as_table }}
+                 <tr>
+                    <td></td>
+                    <td><input type="submit" name="submit" value="Register" /></td>
+                </tr>
+             </table>
+ -->
+
+
+
+ <table>
+                
+            {% load crispy_forms_tags %}
+            {% crispy form %}
+               <br/>
+                    
+   <input type="submit" style="cursor:pointer" class="btn btn-primary" name="submit" value="Submit">
+
+</table>
+
+
+<!-- 
+
+<div class="form-row">
+    <div class="form-group col-md-6">
+    <label for="id_fname" class="col-form-label">First Name</label>
+   <input type="text" class="form-control" name="fname" minlength="2" maxlength="150" id="id_fname" required="">
+    
+ 
+    </div>
+    <div class="form-group col-md-6">
+    <label for="id_lname" class="col-form-label">Last Name</label>
+        <input type="text" class="form-control" name="lname" minlength="2" maxlength="150" id="id_lname" required="">
+          </div>
+   </div>
+  
+
+  <div class="form-row">
+    <div class="form-group col-md-6">
+       
+      <label class="col-form-label" for="id_email">Email </label>
+      <input class="form-control"  type="email" name="email" required="" id="id_email">
+       
+    </div>
+    <div class="form-group col-md-6">
+      <label for="id_username" class="col-form-label">Username</label>
+      <input type="text" class="form-control" name="username" required="" minlength="4" id="id_username" maxlength="150">
+    
+  </div>
+  </div>
+
+  <div class="form-row">
+    <div class="form-group col-md-6">
+
+    <label class="col-form-label" for="id_password1">Enter password</label>
+
+    <input  class="form-control" type="password" name="password1" required="" id="id_password1">
+    
+    </div>
+    <div class="form-group col-md-6">
+<label  class="col-form-label" for="id_password2">Confirm password</label>
+<input class="form-control" type="password" name="password2" required="" id="id_password2">
+        
+  </div>
+   </div>
+   <input type="submit" style="cursor:pointer" class="btn btn-primary" name="submit" value="Submit"> -->
+
+            </form>
+               {% if messages %}
+         <br/>
+            <b>Correct following errors and resubmit..</b>
+            <hr/>
+            {% for message in messages %}
+                {{ message }}
+            {% endfor %}
+            
+        {% endif %}
+               
+            <br/>
+            Already having an account!<br> Sign in <a href="{% url 'login' %}">here</a>.
+            <br/>
+              <a href="{% url 'login' %}" class="btn btn-circle js-scroll-trigger">
+                <i class="fa fa-angle-double-right animated"></i>
+              </a>
+            
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+
+ 
+
+
+
+
+
+
+{% endblock %}
+
+
+{% block include_scripts %}
+
+
+
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+             
+
+
+

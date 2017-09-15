@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Account activated | {{ block.super }}
+{% endblock %}
+
+{% block content %}
+
+    <div class="logout">
+        <p>Account activated! Please <a href="{% url 'login' %}">login</a></p>
+</div>
+
+{% endblock %}

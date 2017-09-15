@@ -1,0 +1,33 @@
+{% extends "base.html"  %}
+{% load static %}
+{% block title %}
+    SignOut |{{ block.super }}
+{% endblock %}
+{% block css %} 
+{% endblock %}
+{% block content %}
+
+
+
+
+   <!-- Intro Header -->
+    <header id="introheader" class="masthead" style=" background: url({% static 'shortener/img/bg17.jpg' %}) no-repeat bottom center scroll; ">
+      <div class="intro-body">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-8 mx-auto">
+              <!-- <h1 class="brand-heading">utrim.me</h1>
+               --><p class="intro-text"><h2>Logged Out</h2></p>
+               		 <p>You have successfully logged out...<br/> <a href="{% url 'login' %}">Login</a> again?</p>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+
+ 
+
+
+{% endblock %}

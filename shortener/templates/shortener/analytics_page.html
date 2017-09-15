@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title%}
+Analytics|{{ block.super }}
+{% endblock %}
+{% block css %} 
+{% endblock %}
+
+{% block content %} 
+
+
+    <!-- Intro Header -->
+    <header id="introheader" class="masthead" style=" background: url({% static 'shortener/img/bg8.jpg' %}) no-repeat bottom center scroll; ">
+      <div class="intro-body">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-8 mx-auto">
+              <!-- <h1 class="brand-heading">utrim.me</h1>
+               --><p class="intro-text"><h2>Analytics</h2></p>
+
+				Hit Count : {{ obj.clickevent.count }} 	            
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+
+ 
+
+
+
+
+
+
+{% endblock %}
+
+
+{% block include_scripts %}
+
+
+
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+             
+
+
+

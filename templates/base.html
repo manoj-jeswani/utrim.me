@@ -1,0 +1,116 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>utrim.me</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href='{% static "shortener/vendor/bootstrap/css/bootstrap.min.css" %}' rel="stylesheet">
+
+    <!-- Custom fonts for this template -->
+    <link href='{% static "shortener/vendor/font-awesome/css/font-awesome.min.css" %}' rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Cabin:700' rel='stylesheet' type='text/css'>
+
+    <link rel ="icon" href="{% static 'shortener/img/iconic.png' %}"> 
+        
+    <!-- Custom styles for this template -->
+    <link href='{% static "shortener/css/grayscale.min.css" %}' rel="stylesheet">
+    {% block css %}
+    {% endblock %}
+
+  </head>
+
+  <body id="page-top">
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+      <div class="container">
+        <a class="navbar-brand js-scroll-trigger" href="/#page-top">Shorten Url</a>
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          Menu
+          <i class="fa fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+            {% if not request.user.is_authenticated %}
+            <li class="nav-item">
+              <a class="nav-link " href="{% url 'register' %}">Sign up </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link " href="{% url 'login' %}">Sign in</a>
+            </li>
+
+            {% endif %}
+             
+             {% if request.user.is_authenticated %}
+           
+             <li class="nav-item">
+              <a class="nav-link " href="{% url 'profile_page' %}">Profile</a>
+            </li>
+           {% endif %}  
+  
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="{% url 'ubank_page' %}">Analytics</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="/#about">About Us</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="/#contact">Contact Us</a>
+            </li>
+        {% if request.user.is_authenticated %}
+           
+ 
+            <li class="nav-item">
+              <a class="nav-link " href="{% url 'logout' %}">Sign out</a>
+            </li>
+          {% endif %}    
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+{% block content %}
+{% endblock %}
+
+    <!-- Map Section -->
+<!--     <div id="map"></div>
+ -->
+    <!-- Footer -->
+    <footer>
+      <div class="container text-center">
+        <p>Copyright &copy; 2017 utrim.me</p>
+
+      </div>
+    </footer>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src='{% static "shortener/vendor/jquery/jquery.min.js" %}'></script>
+    <script src='{% static "shortener/vendor/popper/popper.min.js" %}'></script>
+    <script src='{% static "shortener/vendor/bootstrap/js/bootstrap.min.js" %}'></script>
+
+    <!-- Plugin JavaScript -->
+    <script src='{% static "shortener/vendor/jquery-easing/jquery.easing.min.js" %}'></script>
+
+    <!-- Google Maps API Key - Use your own API key to enable the map feature. More information on the Google Maps API can be found at https://developers.google.com/maps/ -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCRngKslUGJTlibkQ3FkfTxj3Xss1UlZDA&sensor=false"></script>
+
+    <!-- Custom scripts for this template -->
+    <script src='{% static "shortener/js/grayscale.min.js"  %}'></script>
+
+{% block include_scripts %}
+
+{% endblock %}
+
+  </body>
+
+</html>

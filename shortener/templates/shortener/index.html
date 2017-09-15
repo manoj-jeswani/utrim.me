@@ -1,0 +1,178 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title%}
+Shorten URL
+{% endblock %}
+{% block css %} 
+{% endblock %}
+
+{% block content %} 
+
+
+    <!-- Intro Header -->
+    <header id="introheader" class="masthead" style=" background: url({% static 'shortener/img/bg12.jpg' %}) no-repeat bottom center scroll; ">
+      <div class="intro-body">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-8 mx-auto">
+              <h1 class="brand-heading">utrim.me</h1>
+              <p class="intro-text">Shorten your url to a tiny link with endless lifespan.
+                <br>Track your link clicks and other <a class="js-scroll-trigger" href="{% url 'ubank_page' %}">analytics</a>.</p>
+
+              <form method='POST' action='.'>{% csrf_token %}  
+                <div class="input-group"><!-- 
+                      <input name='url' type="text" class="form-control" aria-label="Paste your url here.." placeholder="Paste your url here.."> -->
+                       
+                       {{form.as_table}} 
+                     <!--  <div class="input-group-btn">
+                        <button style="cursor:pointer " type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          Go !!
+                        </button>
+                        <div id="select" class="dropdown-menu dropdown-menu-right">
+
+                       <input style="cursor:pointer"  class="dropdown-item" type='submit' value='Shorten'>
+                      -->    
+                       <input style="cursor:pointer"  class="btn btn-secondary " type='submit' value='Go!!'>
+                         <!--   <div role="separator" class="dropdown-divider"></div>
+                          <input style="cursor:pointer" class="dropdown-item" type='submit' value='Get Analytics'>
+ -->
+                          <!-- <a class="dropdown-item" href="#">Get Analytics</a>
+                           --><!-- 
+                          <a class="dropdown-item" href="#">Something else here</a>
+                          <div role="separator" class="dropdown-divider"></div>
+                          <a class="dropdown-item" href="#">Separated link</a> -->
+                       
+                       <!--  </div>
+                      </div> -->
+                    </div>
+                  </form>
+                  
+                {{error_msg}}
+
+                <br/>
+
+              <a href="#analytics" class="btn btn-circle js-scroll-trigger">
+                <i class="fa fa-angle-double-down animated"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+
+
+
+    <!-- Download Section -->
+    <section id="analytics" class="download-section content-section text-center"  style=" background: url({% static 'shortener/img/bg10.jpg' %}) no-repeat center center scroll;">
+      <div class="container">
+        <div class="col-lg-8 mx-auto">
+          <h2>Url Analytics </h2>
+
+{% if request.user.is_authenticated %}
+
+ <span class="label label-primary"> <p> With utrim.me | Save and manage your shortened links and get detailed analytics ( number of hits, regionwise popularity/traffic and many more... ) </p>    
+</span>
+
+  <button  class="btn btn-default" type="button" style="cursor:pointer"><a href='{% url "ubank_page" %}'>Check Analytics</a></button>
+
+{%else%}
+
+ <span class="label label-primary"> <p> Sign Up with utrim.me | Save and manage your shortened links and get detailed analytics ( number of hits, regionwise popularity/traffic and many more... ) </p>    
+</span>
+<H4>
+  <a href="{% url 'register' %}">
+            Sign Up           
+              </a>  
+ 
+  
+    |
+
+   <a href="{% url 'login' %}" >
+       Sign In           
+            
+              </a>  
+  </H4>  
+ {% endif %}     
+          
+        </div>
+      </div>
+    </section>
+
+
+
+    <!-- About Section -->
+    <section id="about" class="content-section text-center" style=" background: url({% static 'shortener/img/bg25.jpg' %}) no-repeat center center scroll; ">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 mx-auto">
+            <h2>About utrim.me</h2>
+            <p> <a href="/">utrim.me</a> is a free Url Shortening Service. It also lets you track your url link's analytics.</p>
+            <p>  </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- Contact Section -->
+    <section id="contact" class="content-section text-center">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 mx-auto">
+            <h2>Contact utrim.me</h2>
+            <p>We appreciate your feedback..Feel free to leave one 
+              <a href="#">here</a>.
+              </p>
+           
+            <ul class="list-inline banner-social-buttons">
+              <li class="list-inline-item">
+                <a href="https://twitter.com/manojjeswanig" class="btn btn-default btn-lg">
+                  <i class="fa fa-twitter fa-fw"></i>
+         <!--          <span class="network-name">Twitter</span>
+          -->       </a>
+              </li>
+              <li class="list-inline-item">
+                <a href="https://github.com/manoj-jeswani" class="btn btn-default btn-lg">
+                  <i class="fa fa-github fa-fw"></i>
+     <!--              <span class="network-name">Github</span>
+      -->           </a>
+              </li>
+              <li class="list-inline-item">
+                <a href="https://plus.google.com/u/1/115651792555660494669" class="btn btn-default btn-lg">
+                  <i class="fa fa-google-plus fa-fw"></i>
+<!--                   <span class="network-name">Google+</span>
+ -->                </a>
+              </li>
+
+              <li class="list-inline-item">
+                <a class="btn btn-default btn-lg" href="https://www.facebook.com/profile.php?id=100010671258681&ref=br_rs">
+                <i class="fa fa-facebook fa-fw"></i>
+                </a>
+            </li>
+
+           <li class="list-inline-item">
+                <a class="btn btn-default btn-lg" href="https://www.linkedin.com/in/manoj-jeswani-28b6b413a/">
+                <i class="fa fa-linkedin fa-fw"></i>
+                </a>
+            </li>
+
+
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+{% endblock %}
+
+
+{% block include_scripts %}
+
+     <script type="text/javascript" src='{% static "shortener/js/index.js"  %}'></script>
+
+
+{% endblock %}
+
