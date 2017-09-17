@@ -104,15 +104,16 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'shortener/static/'),    
-]
+# STATICFILES_DIRS = [
+#     os.path.join(BASE_DIR, 'shortener/static/'),    
+# ]
 
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
+
 MEDIA_URL = '/media/'
 
-STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR),"static_cdn")
-MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR),"media_cdn")
+MEDIA_ROOT =os.path.join(BASE_DIR, 'media/')
 
 
 GEOIP_PATH=os.path.join(BASE_DIR, 'geoip_data')
