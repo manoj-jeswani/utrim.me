@@ -19,7 +19,7 @@ Analytics|{{ block.super }}
               <!-- <h1 class="brand-heading">utrim.me</h1>
                --><p class="intro-text"><h2>Analytics</h2></p>
 
-				Hit Count : {{ obj.clickevent.count }} 	            
+				Hit Count : {{ obj.clickevent.count|default :"0" }} 	            
 
             </div>
           </div>
