@@ -56,7 +56,7 @@ class urlss(models.Model):
 	#what we see in admin site as object's name comes from here ... we can also give self.pk
 	def __str__(self):
 		return str(self.url)
-
+# 127.0.0.1 use when hosting via localhost and nginx
 	def get_short_url(self):
 		return "http://165.227.181.182/{shortcode}".format(shortcode=self.shortcode)
 

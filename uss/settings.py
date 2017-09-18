@@ -24,7 +24,7 @@ SECRET_KEY = '&k6i%fv4)+h7r9u!0ocz4@e80k#^**rs-0$3t3y39^yst9%3!o'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
-
+#keep it true when hosting via local host nginx
 ALLOWED_HOSTS = ['*']
 
 
