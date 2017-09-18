@@ -311,3 +311,11 @@ def profile_page(request):
 	}
 	return render(request, 'shortener/profile_page.html',context)    
 
+
+def terms_page(request):
+	return render(request, 'shortener/terms.html',{})
+
+def privacy_page(request):
+	return render(request, 'shortener/privacy.html',{})
+def disc_page(request):
+	return render(request, 'shortener/disclaimer.html',{})

@@ -87,6 +87,39 @@
  -->
     <!-- Footer -->
     <footer>
+
+  <nav class="navbar navbar-expand-lg navbar-light fixed-bottom" id="mainNav">
+      <div class="container">
+        <a class="navbar-brand" href="https://www.linkedin.com/in/manoj-jeswani-28b6b413a/">Developers</a>
+       
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#bnavbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          Base Menu
+          <i class="fa fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="bnavbarResponsive">
+          <ul class="navbar-nav ml-auto">
+       
+            <li class="nav-item">
+              <a class="nav-link " href="{% url 'disc_page' %}">Disclaimer</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link " href="{% url 'privacy_page' %}">Privacy Policy</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link " href="{% url 'terms_page' %}">Terms Of Service</a>
+            </li>
+       
+           
+ 
+             
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+
+
       <div class="container text-center">
         <p>Copyright &copy; 2017 utrim.me</p>
 

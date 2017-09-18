@@ -17,6 +17,10 @@ urlpatterns = [
 	url(r'^activate-account/$', activate_account, name='activate'),
 	url(r'^short/(?P<shortcode>[-\w]+)/(?P<msg>\d+)$',short_page,name='short_pg'),
 	url(r'^analytics/(?P<shortcode>[-\w]+)$',analytics_page,name='analytics_pg'),
+	url(r'^terms_and_conditions/$',terms_page , name='terms_page'),
+    url(r'^privacy_policy/$',privacy_page , name='privacy_page'),
+    url(r'^disclaimer/$',disc_page , name='disc_page'),
+   	
 	
 	# # url(r'a/(?P<shortcode>[\w-]+)/$',redirectingview),
 

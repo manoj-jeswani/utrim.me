@@ -19,6 +19,9 @@ SignUp|{{ block.super }}
               <!-- <h1 class="brand-heading">utrim.me</h1>
 
                -->
+               
+               <br>
+               <br>
                <br/><p class="intro-text"><h2>Sign Up</h2></p>
 
               
@@ -94,6 +97,14 @@ SignUp|{{ block.super }}
    <input type="submit" style="cursor:pointer" class="btn btn-primary" name="submit" value="Submit"> -->
 
             </form>
+            <br>
+    <p>
+            By signing up, you agree to<br> 
+utrim.me's <a href="{% url 'terms_page' %}">Terms of Service</a> and <a href="{% url 'privacy_page' %}">Privacy Policy.
+</a>
+
+</p>
+<br>
                {% if messages %}
          <br/>
             <b>Correct following errors and resubmit..</b>
