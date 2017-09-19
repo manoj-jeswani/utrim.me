@@ -19,7 +19,27 @@ Analytics|{{ block.super }}
               <!-- <h1 class="brand-heading">utrim.me</h1>
                --><p class="intro-text"><h2>Analytics</h2></p>
 
-				Hit Count : {{ obj.clickevent.count|default:"0" }} 	            
+				Hit Count : {{ obj.clickevent.count|default:"0" }} 	
+        Hit Details
+        <hr>
+        <table>
+        <tr>
+        <th>Ip</th> <th>City</th><th>State</th><th>Country</th>
+        </tr>
+
+        {% for ob in qset %}
+        <tr>
+      <td>  {{ob.cip}}</td>
+         <td> {{ob.ccity}}</td>
+        <td>  {{ob.cstate}}</td>
+          
+        <td>  {{ob.ccountry}}</td>
+         <!--  {{ob.clat}}
+          {{ob.clon}} -->
+          
+          
+    </tr>
+        {% endfor %}            
 
             </div>
           </div>

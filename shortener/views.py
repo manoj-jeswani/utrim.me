@@ -6,7 +6,7 @@ from .models import *
 import urllib.parse
 from .forms import *
 from django.contrib import messages
-
+import urllib.request, json 
 
 from django.contrib.auth.models import User
 from django.contrib import auth
@@ -59,6 +59,13 @@ from analytics.models import ClickEvent
 
 # 		return HttpResponse("Hello again {sc}".format(sc=shortcode))
 
+
+
+def get_client_ip(request):
+    ip = request.META.get('HTTP_CF_CONNECTING_IP')
+    if ip is None:
+        ip = request.META.get('REMOTE_ADDR')
+    return ip
 
 
 class index_view(View):
@@ -119,10 +126,37 @@ class index_view(View):
 #class based view
 class cbredirectingview(View):
 	def get(self,request,shortcode=None,*args,**kwargs):
+		cip=""
+		string=""
 		print(shortcode)
 		obj=get_object_or_404(urlss,shortcode=shortcode)
 		if obj.owner=="A":
 			print(ClickEvent.objects.create_event(obj))
+			
+			cip=get_client_ip(request)
+			
+			if cip!="":
+
+				string="http://ip-api.com/json/{cip}".format(cip=cip)
+				with urllib.request.urlopen(string) as url:
+					data=json.loads(url.read().decode())
+				if data!={} and "status" in data.keys():
+					if data["status"]=="success":
+						ipobj=iplocation()
+						ipobj.cip=cip
+						ipobj.ccity=data["city"]
+						ipobj.ccountry=data["country"]
+						ipobj.clat=data["lat"]
+						ipobj.clon=data["lon"]
+						ipobj.cstate=data["regionName"]
+						ipobj.save()
+						ClickEvent.objects.save_ipdetail(obj,ipobj)
+
+
+
+
+
+
 		# print(obj.shortcode)
 		return HttpResponseRedirect(obj.url)
 
@@ -216,15 +250,15 @@ def login_view(request, **kwargs):
 
 
 
-
-
 def analytics_page(request,shortcode=None):
 	if not request.user.is_authenticated():
 		return redirect('login')
 	obj=get_object_or_404(urlss,shortcode=shortcode)
+	ipqset=obj.clickevent.req_ips.all()
 
 	context={
-		"obj":obj
+		"obj":obj,
+		"qset":ipqset
 	}
 	return render(request, 'shortener/analytics_page.html',context)    
 
@@ -312,7 +346,9 @@ def profile_page(request):
 	return render(request, 'shortener/profile_page.html',context)    
 
 
+
 def terms_page(request):
+
 	return render(request, 'shortener/terms.html',{})
 
 def privacy_page(request):
