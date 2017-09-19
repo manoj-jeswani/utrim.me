@@ -15,7 +15,7 @@ from django.contrib.auth import views as auth_views
 from .helpers import generate_activation_key
 from django.core.mail import send_mail
 from django.conf import settings
-from analytics.models import ClickEvent
+from analytics.models import *
 
 # for understanding purpose
 
