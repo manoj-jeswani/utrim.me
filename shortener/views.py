@@ -136,21 +136,28 @@ class cbredirectingview(View):
 			cip=get_client_ip(request)
 			
 			if cip!="":
+				ipobj,created=iplocation.objects.get_or_create(cip=cip)
+				if created==True:
 
-				string="http://ip-api.com/json/{cip}".format(cip=cip)
-				with urllib.request.urlopen(string) as url:
-					data=json.loads(url.read().decode())
-				if data!={} and "status" in data.keys():
-					if data["status"]=="success":
-						ipobj=iplocation()
-						ipobj.cip=cip
-						ipobj.ccity=data["city"]
-						ipobj.ccountry=data["country"]
-						ipobj.clat=data["lat"]
-						ipobj.clon=data["lon"]
-						ipobj.cstate=data["regionName"]
-						ipobj.save()
-						ClickEvent.objects.save_ipdetail(obj,ipobj)
+					string="http://ip-api.com/json/{cip}".format(cip=cip)
+					with urllib.request.urlopen(string) as url:
+						data=json.loads(url.read().decode())
+					if data!={} and "status" in data.keys():
+						if data["status"]=="success":
+							
+							ipobj.cip=cip
+							ipobj.ccity=data["city"]
+							ipobj.ccountry=data["country"]
+							ipobj.clat=data["lat"]
+							ipobj.clon=data["lon"]
+							ipobj.cstate=data["regionName"]
+							ipobj.save()
+							ClickEvent.objects.save_ipdetail(obj,ipobj)
+
+				elif created==False:
+					ClickEvent.objects.save_ipdetail(obj,ipobj)
+
+
 
 
 
