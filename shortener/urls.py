@@ -13,7 +13,7 @@ urlpatterns = [
 
 
 	url(r'^(?P<shortcode>[-\w]+)$',cbredirectingview.as_view()),
-	url(r'^$',index_view.as_view()),
+	url(r'^$',index_view.as_view(), name='index_page'),
 	url(r'^activate-account/$', activate_account, name='activate'),
 	url(r'^short/(?P<shortcode>[-\w]+)/(?P<msg>\d+)$',short_page,name='short_pg'),
 	url(r'^analytics/(?P<shortcode>[-\w]+)$',analytics_page,name='analytics_pg'),

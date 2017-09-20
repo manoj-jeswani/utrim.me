@@ -1,10 +1,12 @@
 #table {
-        width: 200%;
+    overflow-y: hidden;
+        width: 100%;
     }
 
-#thead, #tbody, #tr, #td, #th { display: block; }
+#thead, #tbody, #tr, #td, #th {   display: block;overflow-y: hidden; }
 
 #tr:after {
+    overflow-y: hidden;
     content: ' ';
     display: block;
     visibility: hidden;
@@ -12,23 +14,28 @@
 }
 
 #thead #th {
-    height: 30px;
 
+    overflow-y: hidden;
+    height: 30%;
+height:auto;
     /*text-align: left;*/
 }
 
 #tbody {
-   max-height: 200px;
+    overflow-y: hidden;
+   max-height: 100%;
    height:auto;
-    overflow-y: auto;
+    /*overflow-y: auto;*/
 }
 
 #thead {
+    overflow-y: hidden;
     /* fallback */
 }
 
 
 #tbody #td, #thead #th {
+    overflow-y: hidden;
     width: 25%;
     float: left;
 }

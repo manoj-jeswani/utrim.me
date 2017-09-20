@@ -88,10 +88,10 @@
             <table id="table" class="table table-bordered table-hover table-sm table-responsive">
               <thead id="thead" class="thead-default">
                 <tr id="tr">
-                  <th id="th" style="text-align:center">Url Tag</th>
-                  <th id="th" style="text-align:center">Short Url</th>
-                  <th id="th" style="text-align:center">Active Since</th>
-                <th id="th" style="text-align:center">Hit Count</th>
+                  <th id="th" class="filterable-cell" style="text-align:center">Url Tag</th>
+                  <th id="th" class="filterable-cell" style="text-align:center">Short Url</th>
+                  <th id="th" class="filterable-cell" style="text-align:center">Active Since</th>
+                <th id="th" class="filterable-cell" style="text-align:center">Hit Count</th>
                   
                 </tr>
               </thead>
@@ -101,11 +101,12 @@
                 <tr id="tr">
                   <td id="td" class="filterable-cell"><a href="{{obj.get_absolute_url}}">{{ obj.tag }}</a></td>
                   <td id="td"  class="filterable-cell"> <a href='{{obj.get_short_url}}'>{{obj.get_short_url}}</a></td>
-                  <td  id="td" class="filterable-cell">{% if obj.active %} {{obj.timestamp|date}} {% else %} Inactive {% endif %}</td>
+                  <td  id="td" class="filterable-cell">{% if obj.active %} {{obj.timestamp|date|cut:" "}} {% else %} Inactive {% endif %}</td>
                   <td id="td"  class="filterable-cell">{{ obj.clickevent.count|default:0 }}</td>
                   
 
                 </tr>
+                
              {% endfor %}
                 
               </tbody>
@@ -116,7 +117,7 @@
             </div>
             {% else %}
             <br/>
-            <p><b>No urls added yet..go ahead add some and track analytics !!</b></p>
+            <p><b>No urls added yet..go ahead <a href="{% url 'index_page' %}"> add some</a> and track analytics !!</b></p>
             <hr> 
             {% endif %}
 
