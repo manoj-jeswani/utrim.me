@@ -5,11 +5,11 @@ from shortener.models import urlss
 
 class iplocation(models.Model):
 	cip=models.CharField(max_length=50,unique=True,null=False)
-	ccity=models.CharField(max_length=250,blank=True)
-	ccountry=models.CharField(max_length=250)
-	clat=models.DecimalField(decimal_places=20,max_digits=40)
-	clon=models.DecimalField(decimal_places=20,max_digits=40)
-	cstate=models.CharField(max_length=250)
+	ccity=models.CharField(max_length=250,blank=True,null=True)
+	ccountry=models.CharField(max_length=250,blank=True,null=True)
+	clat=models.DecimalField(decimal_places=20,max_digits=40,blank=True,null=True)
+	clon=models.DecimalField(decimal_places=20,max_digits=40,blank=True,null=True)
+	cstate=models.CharField(max_length=250,blank=True,null=True)
 
 	def __str__(self):
 		return "{i}".format(i=self.cip)
