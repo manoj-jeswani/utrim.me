@@ -106,16 +106,7 @@
                   
 
                 </tr>
-                
-                <tr id="tr">
-                  <td id="td" class="filterable-cell"><a id='taglink' href="{{obj.get_absolute_url}}">{{ obj.tag }}</a></td>
-                  <td id="td"  class="filterable-cell"> <a id='shortlink' href='{{obj.get_short_url}}'>{{obj.get_short_url}}</a></td>
-                  <td  id="td" class="filterable-cell">{% if obj.active %} {{obj.timestamp|date|cut:" "}} {% else %} Inactive {% endif %}</td>
-                  <td id="td"  class="filterable-cell">{{ obj.clickevent.count|default:0 }}</td>
-                  
-
-                </tr>
-             {% endfor %}
+              {% endfor %}
                 
               </tbody>
             </table>
