@@ -84,7 +84,7 @@
           <div class="col-lg-10 mx-auto">
             <h2>Url Bank</h2>
             {% if qset %}
-                    <div class="well well-lg">
+                    <div id="tbc" class="well well-lg">
             <table id="table" class="table table-bordered table-hover table-sm table-responsive">
               <thead id="thead" class="thead-default">
                 <tr id="tr">
@@ -99,14 +99,22 @@
               
               {% for obj in qset %}
                 <tr id="tr">
-                  <td id="td" class="filterable-cell"><a href="{{obj.get_absolute_url}}">{{ obj.tag }}</a></td>
-                  <td id="td"  class="filterable-cell"> <a href='{{obj.get_short_url}}'>{{obj.get_short_url}}</a></td>
+                  <td id="td" class="filterable-cell"><a id='taglink' href="{{obj.get_absolute_url}}">{{ obj.tag }}</a></td>
+                  <td id="td"  class="filterable-cell"> <a id='shortlink' href='{{obj.get_short_url}}'>{{obj.get_short_url}}</a></td>
                   <td  id="td" class="filterable-cell">{% if obj.active %} {{obj.timestamp|date|cut:" "}} {% else %} Inactive {% endif %}</td>
                   <td id="td"  class="filterable-cell">{{ obj.clickevent.count|default:0 }}</td>
                   
 
                 </tr>
                 
+                <tr id="tr">
+                  <td id="td" class="filterable-cell"><a id='taglink' href="{{obj.get_absolute_url}}">{{ obj.tag }}</a></td>
+                  <td id="td"  class="filterable-cell"> <a id='shortlink' href='{{obj.get_short_url}}'>{{obj.get_short_url}}</a></td>
+                  <td  id="td" class="filterable-cell">{% if obj.active %} {{obj.timestamp|date|cut:" "}} {% else %} Inactive {% endif %}</td>
+                  <td id="td"  class="filterable-cell">{{ obj.clickevent.count|default:0 }}</td>
+                  
+
+                </tr>
              {% endfor %}
                 
               </tbody>
