@@ -16,6 +16,7 @@ from .helpers import generate_activation_key
 from django.core.mail import send_mail
 from django.conf import settings
 from analytics.models import *
+from django.db.models import Count
 
 # for understanding purpose
 
@@ -257,17 +258,41 @@ def login_view(request, **kwargs):
 
 
 
-def analytics_page(request,shortcode=None):
+def analytics_page(request,shortcode=None,country=None):
 	if not request.user.is_authenticated():
 		return redirect('login')
+	speciqset=""
+	bol=0
 	obj=get_object_or_404(urlss,shortcode=shortcode)
 	ipqset=obj.clickevent.req_ips.all()
 
-	context={
-		"obj":obj,
-		"qset":ipqset
-	}
-	return render(request, 'shortener/analytics_page.html',context)    
+	cqset=ipqset.annotate(total=Count('ccountry'))
+	if country!='all':
+		spcqset=obj.clickevent.req_ips.filter(ccountry=country)
+		speciqset=spcqset.annotate(rtotal=Count('ccity'))
+		bol=1
+		context={
+			"obj":obj,
+			"qset":ipqset,
+			"cqset":cqset,
+			"speciqset":speciqset,
+			"bol":bol
+
+
+		}
+		return render(request, 'shortener/analytics_page.html',context)		
+
+	else:
+		bol=0
+		context={
+			"obj":obj,
+			"qset":ipqset,
+			"cqset":cqset,
+			"speciqset":speciqset,
+			"bol":bol
+
+		}
+		return render(request, 'shortener/analytics_page.html',context)    
 
 
 def ubview(request):

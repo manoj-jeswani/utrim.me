@@ -61,7 +61,7 @@ class urlss(models.Model):
 		return "http://utrim.me/{shortcode}".format(shortcode=self.shortcode)
 
 	def get_absolute_url(self):
-		return reverse("analytics_pg",kwargs={"shortcode":self.shortcode})
+		return reverse("analytics_pg",kwargs={"shortcode":self.shortcode,"country":"all"})
 
 
 

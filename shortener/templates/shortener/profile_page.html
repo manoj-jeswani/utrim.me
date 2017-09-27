@@ -78,7 +78,7 @@
 
 
     <!-- About Section -->
-    <section id="urltable" class="content-section text-center" style=" background: url({% static 'shortener/img/bg25.jpg' %}) no-repeat center center scroll; ">
+    <section id="urltable" class="content-section text-center" style=" background: url({% static 'shortener/img/bg12.jpg' %}) no-repeat center center scroll; ">
       <div class="container">
         <div class="row">
           <div class="col-lg-10 mx-auto">
@@ -106,14 +106,16 @@
                   
 
                 </tr>
+
               {% endfor %}
                 
               </tbody>
             </table>
 
-
-
             </div>
+
+             <p style="font-size: auto; color: white">-- Tap on a Url Tag to checkout that url's analytics</p>
+
             {% else %}
             <br/>
             <p><b>No urls added yet..go ahead <a href="{% url 'index_page' %}"> add some</a> and track analytics !!</b></p>

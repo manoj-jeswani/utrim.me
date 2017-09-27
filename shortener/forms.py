@@ -15,6 +15,8 @@ class submitUrlForm(forms.Form):
 		else:
 			return 'http://'+got_url
 
+    
+
  
 
 

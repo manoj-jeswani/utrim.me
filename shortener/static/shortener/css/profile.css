@@ -26,8 +26,8 @@ height:auto;
 }
 
 #tbody {
-    overflow-y: hidden;
-   max-height: 100%;
+    overflow-y: auto;
+   max-height: 200px;
    height:auto;
     /*overflow-y: auto;*/
 }
