@@ -262,37 +262,46 @@ def analytics_page(request,shortcode=None,country=None):
 	if not request.user.is_authenticated():
 		return redirect('login')
 	speciqset=""
+	cqset=""
 	bol=0
 	obj=get_object_or_404(urlss,shortcode=shortcode)
 	ipqset=obj.clickevent.req_ips.all()
+	
+	# print(ClickEvent.objects.filter(urlss_url=obj).annotate(total=Count('req_ips__ccountry')))
+	d={}
+	for pp in ipqset:
+		if pp.ccountry in d:
+			d[pp.ccountry]=d[pp.ccountry]+1
+		else:
+			d[pp.ccountry]=1
 
-	cqset=ipqset.annotate(total=Count('ccountry'))
+	cqset=d
+			
+
 	if country!='all':
 		spcqset=obj.clickevent.req_ips.filter(ccountry=country)
-		speciqset=spcqset.annotate(rtotal=Count('ccity'))
+		d={}
+		for pp in spcqset:
+			if pp.ccity in d:
+				d[pp.ccity]=d[pp.ccity]+1
+			else:
+				d[pp.ccity]=1
+		
+		speciqset=d
 		bol=1
-		context={
-			"obj":obj,
-			"qset":ipqset,
-			"cqset":cqset,
-			"speciqset":speciqset,
-			"bol":bol
-
-
-		}
-		return render(request, 'shortener/analytics_page.html',context)		
+		
 
 	else:
 		bol=0
-		context={
-			"obj":obj,
-			"qset":ipqset,
-			"cqset":cqset,
-			"speciqset":speciqset,
-			"bol":bol
+	context={
+		"obj":obj,
+		"qset":ipqset,
+		"cqset":cqset,
+		"speciqset":speciqset,
+		"bol":bol
 
-		}
-		return render(request, 'shortener/analytics_page.html',context)    
+	}
+	return render(request, 'shortener/analytics_page.html',context)    
 
 
 def ubview(request):
