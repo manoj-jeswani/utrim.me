@@ -298,7 +298,8 @@ def analytics_page(request,shortcode=None,country=None):
 		"qset":ipqset,
 		"cqset":cqset,
 		"speciqset":speciqset,
-		"bol":bol
+		"bol":bol,
+		"c":country
 
 	}
 	return render(request, 'shortener/analytics_page.html',context)    
