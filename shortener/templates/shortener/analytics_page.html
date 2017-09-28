@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
+{% load app_filters %}
 
 {% block title%}
 Analytics|{{ block.super }}
@@ -258,9 +259,9 @@ function drawChart(data, options) {
                 {% for ob in qset %}
                 <tr id="tr">
                   <td id="td" class="filterable-cell">{{ob.cip}}</td>
-                  <td id="td"  class="filterable-cell">{{ob.ccity}}</td>
-                  <td  id="td" class="filterable-cell"> {{ob.cstate}}</td>
-                  <td id="td"  class="filterable-cell">{{ob.ccountry}}</td>
+                  <td id="td"  class="filterable-cell">{{ob.ccity|replace_space}}</td>
+                  <td  id="td" class="filterable-cell"> {{ob.cstate|replace_space}}</td>
+                  <td id="td"  class="filterable-cell">{{ob.ccountry|replace_space}}</td>
                   
 
                 </tr>
