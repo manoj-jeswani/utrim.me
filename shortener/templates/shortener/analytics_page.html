@@ -84,7 +84,7 @@ function drawChart(data, options) {
           var selectedItem = chart.getSelection()[0];
           if (selectedItem) {
             var topping = data.getValue(selectedItem.row, 0);
-             window.location.replace('./'+topping);
+             window.location.replace('./'+topping.replace(" ","_"));
 
 
           }

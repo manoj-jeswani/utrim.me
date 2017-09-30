@@ -279,7 +279,7 @@ def analytics_page(request,shortcode=None,country=None):
 			
 
 	if country!='all':
-		spcqset=obj.clickevent.req_ips.filter(ccountry=country)
+		spcqset=obj.clickevent.req_ips.filter(ccountry=country.replace("_"," "))
 		d={}
 		for pp in spcqset:
 			if pp.ccity in d:
