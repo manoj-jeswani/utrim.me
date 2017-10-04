@@ -21,15 +21,22 @@
   
 
 
-/*
 
+/*
+#slideshow img { display: none }
+#slideshow img.first { display: block }*/
 
 
 $(document).ready(function(){
 
 
+$('#shuffle').cycle({ 
+    fx:     'shuffle', 
+    easing: 'easeOutBack', 
+    delay:  -4000 
+});
 
-if ($('#shortened').css('display') == 'none') {
+/*if ($('#shortened').css('display') == 'none') {
 console.log('yes');
 }
 else{
@@ -43,10 +50,10 @@ $('html,body').animate({scrollTop: $('#shortened').offset().top});
 
 }
 
-
+*/
 
 
 });
 
-*/
+
 

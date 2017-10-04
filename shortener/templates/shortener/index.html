@@ -5,6 +5,24 @@
 Shorten URL
 {% endblock %}
 {% block css %} 
+
+<style>
+.videoWrapper {
+  position: relative;
+  padding-bottom: 56.25%; /* 16:9 */
+  padding-top: 25px;
+  height: 0;
+}
+.videoWrapper iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+</style>
+
 {% endblock %}
 
 {% block content %} 
@@ -17,6 +35,8 @@ Shorten URL
           <div class="row">
             <div class="col-lg-8 mx-auto">
               <h1 class="brand-heading">utrim.me</h1>
+
+
               <p class="intro-text">Shorten your url to a tiny link with endless lifespan.
                 <br>Track your link clicks and other <a class="js-scroll-trigger" href="{% url 'ubank_page' %}">analytics</a>.</p>
 
@@ -55,11 +75,16 @@ Shorten URL
               <a href="#analytics" class="btn btn-circle js-scroll-trigger">
                 <i class="fa fa-angle-double-down animated"></i>
               </a>
+
+
+
             </div>
           </div>
         </div>
       </div>
     </header>
+
+
 
 
 
@@ -110,6 +135,31 @@ Shorten URL
             <h2>About utrim.me</h2>
             <p> <a href="/">utrim.me</a> is a free Url Shortening Service. It also lets you track your url link's analytics.</p>
             <p>  </p>
+         <!-- style="max-width: 100% ; max-height: 100% ; width: auto ; height: auto;" --><!-- 
+           <div id="shuffle" style="max-width: 100% ; max-height: 100% ; width: auto ; height: auto;"  >
+  <img src="{% static 'shortener/img/simg1.png' %}"  class="first img img-responsive" style="max-width: 100% ; height: auto; display: block" />
+  <img src="{% static 'shortener/img/simg2.png' %}" class="first img img-responsive" style="max-width: 100% ; height: auto; display: block"  />
+  <img src="{% static 'shortener/img/simg3.png' %}" class="first img img-responsive" style="max-width: 100% ; height: auto; display: block"  />
+<img src="{% static 'shortener/img/simg4.png' %}"  class="first img img-responsive" style="max-width: 100% ; height: auto; display: block" />
+  <img src="{% static 'shortener/img/simg5.png' %}" class="first img img-responsive" style="max-width: 100% ; height: auto; display: block" />
+  <img src="{% static 'shortener/img/simg6.png' %}" class="first img img-responsive" style="max-width: 100% ; height: auto; display: block"/>
+
+</div> -->
+<!-- 
+width="560" height="315" -->
+<div class="videoWrapper">
+
+<iframe src="https://www.youtube.com/embed/Zn5GiTBfxMM?rel=0" frameborder="0" allowfullscreen></iframe>
+
+
+</div>
+
+
+
+  <p>
+    <br>
+  </p>  
+
           </div>
         </div>
       </div>
@@ -172,7 +222,8 @@ Shorten URL
 {% block include_scripts %}
 
      <script type="text/javascript" src='{% static "shortener/js/index.js"  %}'></script>
-
+     
+     <script src='{% static "shortener/js/jquery.cycle.all.min.js"  %}'></script>
 
 {% endblock %}
 
