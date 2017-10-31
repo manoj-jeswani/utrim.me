@@ -3,7 +3,10 @@ from .views import *
 from django.contrib.auth import views as auth_views
 
 urlpatterns = [
-
+# url(r'^(?P<url>[a-zA-Z0-9\-\_\.\/\:\]\[\=\+\?]+)', my_view)
+	# url(r'^(?P<preurl>http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\(\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+)$',prepend_view),
+	# url(r'^(?P<preurl>http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\(\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+)$',prepend_view),
+	
 	url(r'^register/$', register_view, name='register'),
 	
 	url(r'^login/$', login_view, {'template_name': 'shortener/login.html'}, name='login'),
@@ -20,7 +23,7 @@ urlpatterns = [
 	url(r'^terms_and_conditions/$',terms_page , name='terms_page'),
     url(r'^privacy_policy/$',privacy_page , name='privacy_page'),
     url(r'^disclaimer/$',disc_page , name='disc_page'),
-   	
+   	url(r'^.*/$', prepend_view, name='prepend_view'),
 	
 	# # url(r'a/(?P<shortcode>[\w-]+)/$',redirectingview),
 

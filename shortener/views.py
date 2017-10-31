@@ -18,6 +18,9 @@ from django.conf import settings
 from analytics.models import *
 from django.db.models import Count
 
+from django.http import QueryDict
+import urllib
+
 # for understanding purpose
 
 # def redirectingview(request,*args,**kwargs): #fxn based view
@@ -88,6 +91,7 @@ class index_view(View):
 		obj=""
 		share_string=""
 		form=submitUrlForm(request.POST)
+		# print(request.POST)
 		if form.is_valid():
 			print(form.cleaned_data)
 		got_url=form.cleaned_data.get('url')
@@ -121,6 +125,62 @@ class index_view(View):
 		
 		return render(request,"shortener/index.html",new_context)
 	
+
+
+def prepend_view(request,preurl=None):
+	preurl = request.get_full_path()[1:]
+	preurl=urllib.parse.unquote(preurl)
+	print(preurl)
+	
+	dict = {'url': preurl, 'csrfmiddlewaretoken': 'pJR0Bu8koDhyLUXVhjdyIGMrhn6jh5gPx5dREBwWKBzzOvxB0k3rs2Y336oUrse6'}
+	qdict = QueryDict('', mutable=True)
+	qdict.update(dict)	
+	# print(preurl)
+	# print(qdict)
+	
+	error_msg=""
+	
+	msg=0
+
+	obj=""
+	share_string=""
+	form=submitUrlForm(qdict)
+	# print(request.POST)
+	if form.is_valid():
+
+		print(form.cleaned_data)
+	got_url=form.cleaned_data.get('url')
+	print(got_url)
+	if got_url==None:
+		error_msg=form.errors.get('url')
+		form.errors['url']=""
+	
+	else:
+		obj,created=urlss.objects.get_or_create(url=got_url)
+		
+		if created:
+			msg=1
+		else:
+			msg=0
+		return redirect('/short/%s/%s'%(obj.shortcode,msg))
+		
+		
+	if error_msg!='':
+		error_msg='Invalid Url..Verify and try again..'
+
+	form=submitUrlForm()
+	
+	new_context={
+		"form":form,
+		"error_msg":error_msg
+
+	}
+
+	return render(request,"shortener/index.html",new_context)
+
+
+
+
 
 
 
