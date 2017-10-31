@@ -129,7 +129,7 @@ class index_view(View):
 
 def prepend_view(request,preurl=None):
 	preurl = request.get_full_path()[1:]
-	preurl=urllib.parse.unquote(preurl)
+	# preurl=urllib.parse.unquote(preurl)
 	print(preurl)
 	
 	dict = {'url': preurl, 'csrfmiddlewaretoken': 'pJR0Bu8koDhyLUXVhjdyIGMrhn6jh5gPx5dREBwWKBzzOvxB0k3rs2Y336oUrse6'}
