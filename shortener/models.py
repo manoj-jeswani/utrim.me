@@ -58,7 +58,7 @@ class urlss(models.Model):
 		return str(self.url)
 # 127.0.0.1 use when hosting via localhost and nginx
 	def get_short_url(self):
-		return "http://127.0.0.1:8000/{shortcode}".format(shortcode=self.shortcode)
+		return "http://utrim.me/{shortcode}".format(shortcode=self.shortcode)
 
 	def get_absolute_url(self):
 		return reverse("analytics_pg",kwargs={"shortcode":self.shortcode,"country":"all"})
