@@ -1,0 +1,482 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title%}
+
+Links - API
+
+{% endblock %}
+
+{% block css %} 
+
+
+{% endblock %}
+
+{% block content %} 
+
+ <section id="about" class="content-section " style="background: linear-gradient(to right, rgba(255,0,0,0), rgba(255,0,0,1)); ">
+
+      <div class="container">
+        <div class="row">
+
+          <div class="col-lg-8 col-sm-8 col-md-8 mx-auto">
+
+<p style="font-size: 270%;  color: white;"><b>Links</b> </p>
+<hr style="background-color:rgb(255,255,128)" height=10%>
+<p>&nbsp;</p>
+
+<p style="color: rgb(255,255,128); font-size: 200%;"><b>API request links :</b></p>
+
+<ul align="left">
+<u>
+<li ><a href="#1l">/api/shorten</a></li>
+<li ><a href="#2l">/api/mylinks</a></li>
+<li ><a href="#3l">/api/mylinks/edit/&ltcode&gt</a></li>
+<li ><a href="#4l">/api/mylinks/analytics/&ltcode&gt</a></li>
+</u>
+</ul>
+<p>&nbsp;</p>
+
+
+<blockquote id="1l">
+
+
+<p style="color: rgb(255,255,128); font-size: 150%;"><b>/api/shorten</b></p>
+<p style="color: rgb(255,255,128);">Given a long URL, returns a utrim.me short-link.</p>
+<p></p>
+<p style="color: rgb(255,255,128);"><b>Parameters</b></p>
+
+
+	<ul align="left">
+<li style="color: rgb(255,255,128);">url - a long URL to be shortened (example: https://www.thenewboston.com).</li>
+<li style="color: rgb(255,255,128);">
+format - json. Default: json.
+</li>
+
+</ul>
+
+<p></p>
+<p style="color: rgb(255,255,128);"><b>Prerequisites</b></p>
+
+	<ul align="left">
+<li style="color: rgb(255,255,128);">Long URLs should be URL-encoded. You can not include a longUrl in the request that has &, ?, #, or other reserved parameters without first encoding it.</li>
+<li style="color: rgb(255,255,128);">
+Long URLs should not contain spaces: any longUrl with spaces will be rejected. All spaces should be either percent encoded %20 or plus encoded +. Note that tabs, newlines and trailing spaces are all indications of errors. Please remember to strip leading and trailing whitespace from any user input before shortening.
+</li>
+
+</ul>
+
+
+<p></p>
+<p style="color: rgb(255,255,128);"><b>Return Values</b></p>
+
+	<ul align="left">
+<li style="color: rgb(255,255,128);">shorturl - the actual utrim.me link that should be used, and is a unique value for the given utrim.me account.
+</li>
+<li style="color: rgb(255,255,128);">
+url - an echo back of the url request parameter. This may not always be equal to the URL requested, as some URL normalization may occur (e.g., due to encoding differences, or case differences in the domain). This long_url will always be functionally identical the the request parameter.</li>
+
+<li style="color: rgb(255,255,128);">created - the exact date and time when requested url got shortened. 
+</li>
+
+</ul>
+
+<p></p>
+
+<p style="color: rgb(255,255,128);"><b>Example Request</b></p>
+<pre class="language-markup"><code style="box-sizing: border-box; background-color: #f9f9f9; border-radius: 3px; color: #666666; border: 1px solid #c6c6c6; padding: 0px 3px; display: inline-block; font-size: 14px; background-clip: padding-box; padding-left: 2%; padding-right: 2%">
+import requests
+
+url="http://utrim.me/api/shorten"
+
+data={'url':'https://www.geeksforgeeks.org/get-post-requests-using-python/'}
+r = requests.post(url,data=data)
+print(r.json())
+
+</code></pre>
+<p></p>
+<p style="color: rgb(255,255,128);"><b>Output</b></p>
+
+<pre class="language-markup"><code style="box-sizing: border-box; background-color: #f9f9f9; border-radius: 3px; color: #666666; border: 1px solid #c6c6c6; padding: 0px 3px; display: inline-block; font-size: 14px; background-clip: padding-box; padding-left: 2%; padding-right: 2%">
+{'created': '2018-01-15 19:28:27.298391+00:00', 'shorturl': 'http://utrim.me/43u4o4', 'url': 'https://www.geeksforgeeks.org/get-post-requests-using-python/'}
+
+</code></pre> 
+
+
+</blockquote>
+
+
+
+<p>&nbsp;</p>
+
+<blockquote id="2l">
+
+
+<p style="color: rgb(255,255,128); font-size: 150%;"><b>/api/mylinks</b></p>
+<p style="color: rgb(255,255,128);">
+<ul align="left">
+<li style="color: rgb(255,255,128);">A GET request results into a list of all the urls (alongwith respective meta data) contained in your url bank.</li>
+<li style="color: rgb(255,255,128);">
+A POST request results into the supplied url being shortened and added to your url bank with a tag (which is also supplied in the POST request). 
+</li>
+
+</ul>
+<br>Authentication: Login Credentials</p>
+
+<p></p>
+<p style="color: rgb(255,255,128);"><b>Parameters for POST</b></p>
+
+
+	<ul align="left">
+<li style="color: rgb(255,255,128);">url - a long URL to be shortened (example: https://www.thenewboston.com).</li>
+<li style="color: rgb(255,255,128);">
+tag - a name which may be associated to the url for future reference.
+</li>
+
+</ul>
+
+<p></p>
+<p style="color: rgb(255,255,128);"><b>Prerequisites</b></p>
+
+	<ul align="left">
+<li style="color: rgb(255,255,128);">Long URLs should be URL-encoded. You can not include a longUrl in the request that has &, ?, #, or other reserved parameters without first encoding it.</li>
+<li style="color: rgb(255,255,128);">
+Long URLs should not contain spaces: any longUrl with spaces will be rejected. All spaces should be either percent encoded %20 or plus encoded +. Note that tabs, newlines and trailing spaces are all indications of errors. Please remember to strip leading and trailing whitespace from any user input before shortening.
+</li>
+
+</ul>
+
+
+<p></p>
+<p style="color: rgb(255,255,128);"><b>Return Values</b></p>
+<p style="color: rgb(255,255,128);">- For POST request</p>
+
+	<ul align="left">
+<li style="color: rgb(255,255,128);">shorturl - the actual utrim.me link that should be used, and is a unique value for the given utrim.me account.
+</li>
+<li style="color: rgb(255,255,128);">
+url - an echo back of the url request parameter. This may not always be equal to the URL requested, as some URL normalization may occur (e.g., due to encoding differences, or case differences in the domain). This long_url will always be functionally identical the the request parameter.</li>
+
+<li style="color: rgb(255,255,128);">tag - an echo back of the tag request parameter. 
+</li>
+
+<li style="color: rgb(255,255,128);">created - the exact date and time when requested url got shortened. 
+</li>
+
+</ul>
+
+<p></p>
+
+<p style="color: rgb(255,255,128);">- For GET request</p>
+	<ul align="left">
+<li style="color: rgb(255,255,128);">Returns a list of url objects contained in your url bank. Each url object contains keys: 'shorturl', 'url', 'tag', 'created' with their respective values.
+</li>
+</ul>
+<p></p>
+
+
+
+
+<p style="color: rgb(255,255,128);"><b>Example Request</b></p>
+<p style="color: rgb(255,255,128);">- GET request</p>
+
+<pre class="language-markup"><code style="box-sizing: border-box; background-color: #f9f9f9; border-radius: 3px; color: #666666; border: 1px solid #c6c6c6; padding: 0px 3px; display: inline-block; font-size: 14px; background-clip: padding-box; padding-left: 2%; padding-right: 2%">
+import requests
+
+url="http://utrim.me/api/mylinks"
+
+r = requests.get(url, auth=('username', 'password'))
+print(r.json())
+
+</code></pre>
+<p></p>
+<p style="color: rgb(255,255,128);"><b>Output</b></p>
+
+<pre class="language-markup"><code style="box-sizing: border-box; background-color: #f9f9f9; border-radius: 3px; color: #666666; border: 1px solid #c6c6c6; padding: 0px 3px; display: inline-block; font-size: 14px; background-clip: padding-box; padding-left: 2%; padding-right: 2%">
+[
+
+{'tag': 'uml', 'url': 'https://www.google.co.in/search?dcr=0&source=hp&q=uml+diagram+tool&oq=uml+di&gs_l=psy-ab.3.1.0l4.2500.4101.0.5791.6.6.0.0.0.0.365.1074.0j2j0j2.4.0....0...1.1.64.psy-ab..2.4.1074...0i131k1.0.7ZJBA67rrKs', 'shorturl': 'http://utrim.me/pr43nc', 'created': '2017-09-19 04:34:12.956408+00:00'},
+
+{'tag': 'Top', 'url': 'http://www.topcoder.com/community/data-science/data-science-tutorials/introduction-to-graphs-and-their-data-structures-section-3/', 'shorturl': 'http://utrim.me/8mj8re', 'created': '2017-09-19 05:44:08.387258+00:00'}, 
+
+{'tag': 'lecture', 'url': 'http://www.jqueryscript.net/slideshow/Simplest-Automatic-Image-Slideshow-With-jQuery-slideshow-js.html', 'shorturl': 'http://utrim.me/cv5r4v', 'created': '2017-10-04 10:04:06.605749+00:00'}
+
+]
+
+</code></pre> 
+
+<p></p>
+<p style="color: rgb(255,255,128);">- POST request</p>
+
+<pre class="language-markup"><code style="box-sizing: border-box; background-color: #f9f9f9; border-radius: 3px; color: #666666; border: 1px solid #c6c6c6; padding: 0px 3px; display: inline-block; font-size: 14px; background-clip: padding-box; padding-left: 2%; padding-right: 2%">
+import requests
+
+url="http://utrim.me/api/mylinks"
+
+data={'url':'https://www.geeksforgeeks.org/get-post-requests-using-python/','tag':'req'}
+r = requests.post(url, auth=('username', 'password'),data=data)
+print(r.json())
+
+</code></pre>
+<p></p>
+<p style="color: rgb(255,255,128);"><b>Output</b></p>
+
+<pre class="language-markup"><code style="box-sizing: border-box; background-color: #f9f9f9; border-radius: 3px; color: #666666; border: 1px solid #c6c6c6; padding: 0px 3px; display: inline-block; font-size: 14px; background-clip: padding-box; padding-left: 2%; padding-right: 2%">
+{'created': '2018-01-15 20:49:10.298808+00:00', 'tag': 'req', 'url': 'https://www.geeksforgeeks.org/get-post-requests-using-python/', 'shorturl': 'http://utrim.me/r361sb'}
+
+</code></pre> 
+
+
+
+</blockquote>
+
+
+
+
+<p>&nbsp;</p>
+
+<blockquote id="3l">
+
+
+<p style="color: rgb(255,255,128); font-size: 150%;"><b>/api/mylinks/edit/&ltcode&gt</b></p>
+<p style="color: rgb(255,255,128);">
+<ul align="left">
+<li style="color: rgb(255,255,128);">A GET request retrieves the details of the url (contained in your url bank) when short-code corresponding to that url is supplied in place of &ltcode&gt while making request.</li>
+<li style="color: rgb(255,255,128);">
+A PUT request enables you to update the tag associated with the given url. 
+</li>
+<li style="color: rgb(255,255,128);">
+A DELETE request enables you to delete the given url object from your url bank. 
+</li>
+
+</ul>
+<br>Authentication: Login Credentials
+
+</p>
+
+<p></p>
+<p style="color: rgb(255,255,128);"><b>Parameters for PUT</b></p>
+
+
+	<ul align="left">
+<li style="color: rgb(255,255,128);">
+tag - a new name which you may want to associate to your url.
+</li>
+
+</ul>
+
+<p></p>
+<p style="color: rgb(255,255,128);"><b>Prerequisites</b></p>
+
+	<ul align="left">
+<li style="color: rgb(255,255,128);">&ltcode&gt is to be replaced with the code string of length 6 which you can find at the end of your shortened utrim.me url (that url: whose details you want to get via this API call).</li>
+
+</ul>
+
+
+<p></p>
+<p style="color: rgb(255,255,128);"><b>Return Values</b></p>
+<p style="color: rgb(255,255,128);">- For GET request</p>
+
+	<ul align="left">
+<li style="color: rgb(255,255,128);">shorturl - the actual utrim.me link that should be used, and whose 6 digit code was supplied in the requesting link.
+</li>
+<li style="color: rgb(255,255,128);">
+original_url - That original long url which has been shortened to above utrim.me shorturl.</li>
+
+<li style="color: rgb(255,255,128);">tag - name associated to this url in your url bank. 
+</li>
+
+<li style="color: rgb(255,255,128);">created - the exact date and time when original_url was shortened. 
+</li>
+
+</ul>
+
+<p></p>
+
+<p style="color: rgb(255,255,128);">- For PUT request</p>
+	<ul align="left">
+<li style="color: rgb(255,255,128);">Updates tag associated to the given url and returns the same details as for a GET request, but with the updated value of the tag.
+</li>
+</ul>
+<p></p>
+
+
+
+<p style="color: rgb(255,255,128);">- For DELETE request</p>
+	<ul align="left">
+<li style="color: rgb(255,255,128);">Deletes the given url from your bank and returns nothing.
+</li>
+</ul>
+<p></p>
+
+
+<p style="color: rgb(255,255,128);"><b>Example Request</b></p>
+<p style="color: rgb(255,255,128);">- GET request</p>
+
+<pre class="language-markup"><code style="box-sizing: border-box; background-color: #f9f9f9; border-radius: 3px; color: #666666; border: 1px solid #c6c6c6; padding: 0px 3px; display: inline-block; font-size: 14px; background-clip: padding-box; padding-left: 2%; padding-right: 2%">
+import requests
+
+url="http://utrim.me/api/mylinks/edit/r361sb"
+
+r = requests.get(url, auth=('username', 'password'))
+print(r.json())
+
+</code></pre>
+<p></p>
+<p style="color: rgb(255,255,128);"><b>Output</b></p>
+
+<pre class="language-markup"><code style="box-sizing: border-box; background-color: #f9f9f9; border-radius: 3px; color: #666666; border: 1px solid #c6c6c6; padding: 0px 3px; display: inline-block; font-size: 14px; background-clip: padding-box; padding-left: 2%; padding-right: 2%">
+{'original_url': 'https://www.geeksforgeeks.org/get-post-requests-using-python/', 'tag': 'req', 'created': '2018-01-15 20:49:10.298808+00:00', 'shorturl': 'http://utrim.me/r361sb'}
+
+</code></pre> 
+
+<p></p>
+<p style="color: rgb(255,255,128);">- PUT request</p>
+
+<pre class="language-markup"><code style="box-sizing: border-box; background-color: #f9f9f9; border-radius: 3px; color: #666666; border: 1px solid #c6c6c6; padding: 0px 3px; display: inline-block; font-size: 14px; background-clip: padding-box; padding-left: 2%; padding-right: 2%">
+import requests
+
+url="http://utrim.me/api/mylinks/edit/r361sb"
+data={'tag':'req-resp'}
+r = requests.put(url,auth=('username', 'password'),data=data)
+print(r.json())
+
+
+</code></pre>
+<p></p>
+<p style="color: rgb(255,255,128);"><b>Output</b></p>
+
+<pre class="language-markup"><code style="box-sizing: border-box; background-color: #f9f9f9; border-radius: 3px; color: #666666; border: 1px solid #c6c6c6; padding: 0px 3px; display: inline-block; font-size: 14px; background-clip: padding-box; padding-left: 2%; padding-right: 2%">
+{'tag': 'req-resp', 'created': '2018-01-15 20:49:10.298808+00:00', 'original_url': 'https://www.geeksforgeeks.org/get-post-requests-using-python/', 'shorturl': 'http://utrim.me/r361sb'}
+
+</code></pre> 
+
+
+<p></p>
+<p style="color: rgb(255,255,128);">- DELETE request</p>
+
+<pre class="language-markup"><code style="box-sizing: border-box; background-color: #f9f9f9; border-radius: 3px; color: #666666; border: 1px solid #c6c6c6; padding: 0px 3px; display: inline-block; font-size: 14px; background-clip: padding-box; padding-left: 2%; padding-right: 2%">
+import requests
+
+url="http://utrim.me/api/mylinks/edit/r361sb"
+
+r = requests.delete(url,auth=('username', 'password'))
+print(r.status_code)
+
+
+</code></pre>
+<p></p>
+<p style="color: rgb(255,255,128);"><b>Output</b></p>
+
+<pre class="language-markup"><code style="box-sizing: border-box; background-color: #f9f9f9; border-radius: 3px; color: #666666; border: 1px solid #c6c6c6; padding: 0px 3px; display: inline-block; font-size: 14px; background-clip: padding-box; padding-left: 2%; padding-right: 2%">
+204
+
+</code></pre> 
+
+</blockquote>
+
+
+<p>&nbsp;</p>
+
+<blockquote id="4l">
+
+
+<p style="color: rgb(255,255,128); font-size: 150%;"><b>/api/mylinks/analytics/&ltcode&gt</b></p>
+<p style="color: rgb(255,255,128);">
+<ul align="left">
+<li style="color: rgb(255,255,128);">A GET request retrieves the detailed visit/hit analytics of the given url(contained in your url bank).</li>
+
+</ul>
+<br>Authentication: Login Credentials</p>
+
+<p></p>
+<p style="color: rgb(255,255,128);"><b>Parameters</b></p>
+
+
+	<ul align="left"><li style="color: rgb(255,255,128);">
+None
+</li>
+
+</ul>
+
+<p></p>
+<p style="color: rgb(255,255,128);"><b>Prerequisites</b></p>
+
+	<ul align="left">
+
+<li style="color: rgb(255,255,128);">&ltcode&gt is to be replaced with the code string of length 6 which you can find at the end of your shortened utrim.me url (that url: whose details you want to get via this API call).</li>
+</ul>
+
+
+<p></p>
+<p style="color: rgb(255,255,128);"><b>Return Values</b></p>
+<p style="color: rgb(255,255,128);">- For GET request</p>
+
+	<ul align="left">
+<li style="color: rgb(255,255,128);">total_hit_count - the total number of hits on the given url till the current instant.
+</li>
+<li style="color: rgb(255,255,128);">
+unique_ip_set - list of non-redundant/unique ip addresses that have visited the given link.</li>
+
+<li style="color: rgb(255,255,128);">regionwise_unique_hits_percent - A dictionary/map having countries as keys and percentage of unique hits from these countries as corresponding values. 
+</li>
+
+
+</ul>
+
+<p></p>
+
+
+
+
+<p style="color: rgb(255,255,128);"><b>Example Request</b></p>
+<p style="color: rgb(255,255,128);">- GET request</p>
+
+<pre class="language-markup"><code style="box-sizing: border-box; background-color: #f9f9f9; border-radius: 3px; color: #666666; border: 1px solid #c6c6c6; padding: 0px 3px; display: inline-block; font-size: 14px; background-clip: padding-box; padding-left: 2%; padding-right: 2%">
+import requests
+
+url="http://utrim.me/api/mylinks/analytics/pr43nc"
+r = requests.get(url,auth=('username', 'password'))
+print(r.json())
+
+</code></pre>
+<p></p>
+<p style="color: rgb(255,255,128);"><b>Output</b></p>
+
+<pre class="language-markup"><code style="box-sizing: border-box; background-color: #f9f9f9; border-radius: 3px; color: #666666; border: 1px solid #c6c6c6; padding: 0px 3px; display: inline-block; font-size: 14px; background-clip: padding-box; padding-left: 2%; padding-right: 2%">
+{
+
+'total_hit_count': 20,
+'regionwise_unique_hits_percent': {'United States': '14.29', 'India': '85.71'},
+'unique_ip_set': ['203.190.148.228', '47.9.215.48', '49.38.109.206', '49.38.115.16', '223.188.42.115', '223.188.53.214', '199.249.224.62']
+
+}
+
+</code></pre> 
+
+<p></p>
+
+</blockquote>
+
+
+
+<div class="row">
+<div class='col-lg-6 col-sm-6 col-md-6' style=" "><a href="{% url 'api-doc-req-resp' %}" style=" float:left" class= " "><b style="text-transform: capitalize"> <u>Previous </u></b> </a></div>
+
+</div>
+
+
+</div>
+</div>
+</div>
+</section>
+
+
+
+{% endblock %}
+
+
+{% block include_scripts %}
+  
+{% endblock %}

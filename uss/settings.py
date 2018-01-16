@@ -40,6 +40,8 @@ INSTALLED_APPS = [
     'shortener',
     'analytics',
     'crispy_forms',
+    'rest_framework',
+    'api_doc'
 
     
 ]

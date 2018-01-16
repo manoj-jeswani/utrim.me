@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title%}
+
+Authentication - API
+
+{% endblock %}
+
+{% block css %} 
+
+
+{% endblock %}
+
+{% block content %} 
+
+ <section id="about" class="content-section " style="background: linear-gradient(to right, rgba(255,0,0,0), rgba(255,0,0,1)); ">
+
+      <div class="container">
+        <div class="row">
+
+          <div class="col-lg-8 col-sm-8 col-md-8 mx-auto">
+
+<p style="font-size: 270%;  color: white;"><b>Authentication</b> </p>
+<hr style="background-color:rgb(255,255,128)" height=10%>
+<p>&nbsp;</p>
+<p style="box-sizing: border-box; font-family: ProximaNova-Regular; font-size: 16px; line-height: 1.6; color: rgb(255,255,128); margin-bottom: 30px;">Most utrim.me API endpoints require Authentication credentials.</p>
+<p style="box-sizing: border-box; font-family: ProximaNova-Regular; font-size: 16px; line-height: 1.6; color: rgb(255,255,128); margin-bottom: 30px;"><strong style="box-sizing: border-box; font-family: ProximaNova-Bold;">If you only need authentication credentials for your own account and will not be authenticating any additional end-users, you can generate one by signing up <a href="{% url 'register' %}"> <span style="text-decoration: underline;">here</span></a>.</strong></p>
+<p>&nbsp;</p>
+<p style="box-sizing: border-box; font-family: ProximaNova-Regular; font-size: 16px; line-height: 1.6; color: rgb(255,255,128); margin-bottom: 30px;"><strong style="box-sizing: border-box; font-family: ProximaNova-Bold;"><span style="font-family: ProximaNova-Regular; font-weight: 400;">Once you have login/authentication credentials, you can pass them like this :</span></strong></p>
+<pre class="language-python"><code style="box-sizing: border-box; background-color: #f9f9f9; border-radius: 3px; color: #666666; border: 1px solid #c6c6c6; padding: 0px 3px; display: inline-block; font-size: 14px; background-clip: padding-box; padding-left: 2%; padding-right: 2%" >auth=('username', 'password')</code></pre>
+
+<p style="box-sizing: border-box; font-family: ProximaNova-Regular; font-size: 16px; line-height: 1.6; color: rgb(255,255,128); margin-bottom: 30px;"><strong style="box-sizing: border-box; font-family: ProximaNova-Bold;"><span style="font-family: ProximaNova-Regular; font-weight: 400;">An example GET request using python might be made like this</span></strong></p>
+<pre class="language-python"><code style="box-sizing: border-box; background-color: #f9f9f9; border-radius: 3px; color: #666666; border: 1px solid #c6c6c6; padding: 0px 3px; display: inline-block; font-size: 14px; background-clip: padding-box; padding-left: 2%; padding-right: 2%">import requests
+url="http://utrim.me/api/mylinks"
+r = requests.get(url, auth=('username', 'password'))
+print(r.json())</code></pre>
+
+<p style="box-sizing: border-box; font-family: ProximaNova-Regular; font-size: 16px; line-height: 1.6; color: rgb(255,255,128); margin-bottom: 30px;"><strong style="box-sizing: border-box; font-family: ProximaNova-Bold;"><span style="font-family: ProximaNova-Regular; font-weight: 400;">Here, parameter auth is a tuple in which we supply registered account's username and password. Irrespective of request method ( get, post, put, delete ), auth will always be passed as a parameter with authentication credentials whenever request is being made to API endpoints which require user's&nbsp;</span></strong><strong style="box-sizing: border-box; font-family: ProximaNova-Bold;"><span style="font-family: ProximaNova-Regular; font-weight: 400;">authentication credentials before they can process the data flow.</span></strong></p>
+
+<p><span style="color: rgb(255,255,128); font-family: ProximaNova-Regular; ">An example request might look like:</span></p>
+<pre class="language-markup"><code style="box-sizing: border-box; background-color: #f9f9f9; border-radius: 3px; color: #666666; border: 1px solid #c6c6c6; padding: 0px 3px; display: inline-block; font-size: 14px; background-clip: padding-box; padding-left: 2%; padding-right: 2%">GET /api/mylinks</code></pre>
+
+<p style="color: rgb(255,255,128);">An example response corresponding to above request :</p>
+<pre class="language-markup"><code style="box-sizing: border-box; background-color: #f9f9f9; border-radius: 3px; color: #666666; border: 1px solid #c6c6c6; padding: 0px 3px; display: inline-block; font-size: 14px; background-clip: padding-box; padding-left: 2%; padding-right: 2%">HTTP 200 OK
+Allow: GET, POST, HEAD, OPTIONS
+Content-Type: application/json
+Vary: Accept
+
+[
+    {
+        "url": "https://www.google.co.in/search?dcr=0&amp;source=hp&amp;q=uml+diagram+tool&amp;oq=uml+di&amp;gs_l=psy-ab.3.1.0l4.2500.4101.0.5791.6.6.0.0.0.0.365.1074.0j2j0j2.4.0....0...1.1.64.psy-ab..2.4.1074...0i131k1.0.7ZJBA67rrKs",
+        "shorturl": "http://utrim.me/pr43nc",
+        "tag": "uml",
+        "created": "2017-09-19 04:34:12.956408+00:00"
+    },
+    {
+        "url": "http://www.topcoder.com/community/data-science/data-science-tutorials/introduction-to-graphs-and-their-data-structures-section-3/",
+        "shorturl": "http://utrim.me/8mj8re",
+        "tag": "Top",
+        "created": "2017-09-19 05:44:08.387258+00:00"
+    }
+]</code></pre>
+
+
+<div class="row">
+<div class='col-lg-6 col-sm-6 col-md-6' style=" "><a href="{% url 'api-doc-start'%}" style=" float:left" class= " "><b style="text-transform: capitalize"> <u>Previous </u></b> </a></div>
+
+<div class='col-lg-6 col-sm-6 col-md-6' style=""><a  href="{% url 'api-doc-req-resp' %}"  style=" float:right" class= " " ><b  style="text-transform: capitalize"><u> Next</u> </b></a></div>
+
+</div>
+
+
+</div>
+</div>
+</div>
+</section>
+
+
+
+{% endblock %}
+
+
+{% block include_scripts %}
+  
+{% endblock %}

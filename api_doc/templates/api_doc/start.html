@@ -1,0 +1,129 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title%}
+
+Getting Started - API
+
+{% endblock %}
+
+{% block css %} 
+
+
+{% endblock %}
+
+{% block content %} 
+
+ <section id="about" class="content-section text-center " style="background: linear-gradient(to right, rgba(255,0,0,0), rgba(255,0,0,1)); ">
+
+      <div class="container">
+        <div class="row">
+
+          <div class="col-lg-8 col-sm-8 col-md-8 mx-auto">
+
+
+<p style="font-size: 270%;  color: white;"><b>API Documentation and Resources</b> </p>
+<hr style="background-color:white" height=10%>
+<p>&nbsp;</p>
+
+<p class="main-subheader" style="box-sizing: border-box; font-family: ProximaNova-Regular; font-size: 21px; line-height: 29px; color: rgb(255,255,128); margin-bottom: 60px;">Welcome developers! Here you will find API documentation, integrations, best practices, etc.</p>
+
+
+<blockquote>
+<p  >
+<li style="color: rgb(255,255,128);">Check out all the documentation on how to get started with the utrim.me API, including tips, tricks, and different use cases.</li>
+<li style="color: rgb(255,255,128);">
+Learn how to integrate utrim.me into your existing workflow, data platform, social publishing tool, and more.</li>
+</p>
+</blockquote>
+
+
+<blockquote style="padding-left: 5px;
+    padding-top: 0;
+    padding-bottom: 0;
+    padding-right: 0;
+    border: 5px solid;
+    border-color: #eec275;
+    padding-bottom: 5px;
+    color: rgb(255,255,128);
+    cursor:pointer;" 
+    onclick="fun('fchevron','qlinks')">
+<b style="text-transform: capitalize; " >Quicklinks</b> <i id="fchevron" class="fa fa-chevron-down"></i>
+<div id="qlinks" class="collapse">
+	<hr style="background-color:#eec275" height="100%" width="100%">
+<ul align="left">
+<u>
+<li ><a href="{% url 'api-doc-auth'%}">Authentication</a></li>
+<li ><a href="{% url 'api-doc-req-resp' %}">Request / Response Formats</a></li>
+<li ><a href="{% url 'api-doc-links' %}">Links</a></li>
+
+</u>
+</ul>
+</div>
+
+</blockquote>
+
+<p> </p>
+<div class="button-toolbar main-button-centered" style="box-sizing: border-box; margin: 0px auto 20px;"><a class="btn btn-primary " style="box-sizing: border-box; color: black; text-decoration-line: none; display: inline-block; vertical-align: middle; padding: 9.6px 50px; margin: 0px; font-size: 13.2px; font-family: brandon-grotesque, 'Helvetica Neue', Helvetica, Arial, sans-serif; line-height: 24px; text-transform: uppercase; border-radius: 3px; box-shadow: #ee6123 0px 0px 0px 1px; text-rendering: optimizeLegibility; background: yellow; border: 0px !important;" href="{% url 'api-doc-auth'%}"><b style="cursor:pointer;">GET STARTED</b></a></div>
+
+
+
+
+</div>
+</div>
+</div>
+</section>
+
+
+
+
+{% endblock %}
+
+
+{% block include_scripts %}
+
+<script type="text/javascript">
+
+
+
+function fun(chevronid,divid)
+{
+      
+if ( document.getElementById(chevronid).classList.contains('fa-chevron-down') && document.getElementById(divid).classList.contains('collapse')  )
+ {
+     document.getElementById(chevronid).classList.remove('fa-chevron-down');
+
+     document.getElementById(chevronid).classList.add('fa-chevron-up');
+
+     document.getElementById(divid).classList.remove('collapse');
+
+     document.getElementById(divid).classList.add('collapse-show');
+
+
+ } 
+
+else if ( document.getElementById(chevronid).classList.contains('fa-chevron-up') && document.getElementById(divid).classList.contains('collapse-show')   )
+
+{
+       document.getElementById(chevronid).classList.remove('fa-chevron-up');
+
+       document.getElementById(chevronid).classList.add('fa-chevron-down');
+
+     document.getElementById(divid).classList.remove('collapse-show');
+
+     document.getElementById(divid).classList.add('collapse');
+
+
+}
+  
+
+
+
+
+
+}
+
+</script>
+  
+{% endblock %}
+

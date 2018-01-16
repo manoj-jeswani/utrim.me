@@ -1,6 +1,8 @@
 from django.contrib import admin
-from .models import urlss
+from .models import *
 # Register your models here.
 
 admin.site.register(urlss)
+
+admin.site.register(Profiles)
 

@@ -23,7 +23,7 @@ urlpatterns = [
 	url(r'^terms_and_conditions/$',terms_page , name='terms_page'),
     url(r'^privacy_policy/$',privacy_page , name='privacy_page'),
     url(r'^disclaimer/$',disc_page , name='disc_page'),
-   	url(r'^.*/$', prepend_view, name='prepend_view'),
+ #  	url(r'^.*/$', prepend_view, name='prepend_view'),
 	
 	# # url(r'a/(?P<shortcode>[\w-]+)/$',redirectingview),
 

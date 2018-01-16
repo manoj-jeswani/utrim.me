@@ -41,6 +41,7 @@ class urlss(models.Model):
 	active= models.BooleanField(default=True)	
 	owner=models.CharField(max_length=255, default="NA")
 	
+	
 	objects=urlssManager()
 
 	#below save def overrides inherited class's save method which used to be called by 

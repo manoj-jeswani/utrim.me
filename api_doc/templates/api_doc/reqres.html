@@ -1,0 +1,96 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title%}
+
+Request-Response - API
+
+{% endblock %}
+
+{% block css %} 
+
+
+{% endblock %}
+
+{% block content %} 
+
+ <section id="about" class="content-section " style="background: linear-gradient(to right, rgba(255,0,0,0), rgba(255,0,0,1)); ">
+
+      <div class="container">
+        <div class="row">
+
+          <div class="col-lg-8 col-sm-8 col-md-8 mx-auto">
+
+<p style="font-size: 270%;  color: white;"><b>Request / Response Formats</b> </p>
+<hr style="background-color:rgb(255,255,128)" height=10%>
+<p>&nbsp;</p>
+
+<p style="box-sizing: border-box; font-family: ProximaNova-Regular; font-size: 16px; line-height: 1.6; color: rgb(255,255,128); margin-bottom: 30px;"><strong style="box-sizing: border-box; font-family: ProximaNova-Bold;">
+All utrim.me APIs support an optional return format parameter format=json. Note that json is the default response format.
+</strong></p>
+
+<blockquote>
+<p >
+	<ul align="left">
+<li style="color: rgb(255,255,128);">All API requests should be against the domain utrim.me (see examples).</li>
+<li style="color: rgb(255,255,128);">
+HTTP Response Status Code is 200 on all valid response in json formats. In json responses, the status_code and status_txt values indicate whether a request is well formed and valid.</li>
+
+<li style="color: rgb(255,255,128);">
+The status_code is 200 for a successful request, 403 when forbidden, 503 for temporary unavailability, 404 to indicate not-found responses, and 400 for all other invalid requests or responses.</li>
+</ul>
+</p>
+</blockquote>
+<p>&nbsp;</p>
+
+<p style="color: rgb(255,255,128);">Example requests and outputs :</p>
+<pre class="language-markup"><code style="box-sizing: border-box; background-color: #f9f9f9; border-radius: 3px; color: #666666; border: 1px solid #c6c6c6; padding: 0px 3px; display: inline-block; font-size: 14px; background-clip: padding-box; padding-left: 2%; padding-right: 2%">
+import requests
+
+url="http://utrim.me/api/mylinks?format=json"
+
+r = requests.get(url, auth=('username', 'password'))
+print(r.status_code)
+print(r.ok)
+print(r.json())
+
+</code></pre>
+<p></p>
+<p style="color: rgb(255,255,128);">Response output for a successful request:</p>
+
+<pre class="language-markup"><code style="box-sizing: border-box; background-color: #f9f9f9; border-radius: 3px; color: #666666; border: 1px solid #c6c6c6; padding: 0px 3px; display: inline-block; font-size: 14px; background-clip: padding-box; padding-left: 2%; padding-right: 2%">
+200
+True
+[{'tag': 'uml', 'created': '2017-09-19 04:34:12.956408+00:00', 'shorturl': 'http://utrim.me/pr43nc', 'url': 'https://www.google.co.in/search?dcr=0&source=hp&q=uml+diagram+tool&oq=uml+di&gs_l=psy-ab.3.1.0l4.2500.4101.0.5791.6.6.0.0.0.0.365.1074.0j2j0j2.4.0....0...1.1.64.psy-ab..2.4.1074...0i131k1.0.7ZJBA67rrKs'}, {'tag': 'Top', 'created': '2017-09-19 05:44:08.387258+00:00', 'shorturl': 'http://utrim.me/8mj8re', 'url': 'http://www.topcoder.com/community/data-science/data-science-tutorials/introduction-to-graphs-and-their-data-structures-section-3/'}]
+
+</code></pre>
+<p></p>
+<p style="color: rgb(255,255,128);">Sample response output for invalid request (like invalid authentication credentials used) may look like :</p>
+<pre class="language-markup"><code style="box-sizing: border-box; background-color: #f9f9f9; border-radius: 3px; color: #666666; border: 1px solid #c6c6c6; padding: 0px 3px; display: inline-block; font-size: 14px; background-clip: padding-box; padding-left: 2%; padding-right: 2%">
+403
+False
+{'detail': 'Invalid username/password.'}
+
+</code></pre>
+
+<div class="row">
+<div class='col-lg-6 col-sm-6 col-md-6' style=" "><a href="{% url 'api-doc-auth'%}" style=" float:left" class= " "><b style="text-transform: capitalize"> <u>Previous </u></b> </a></div>
+
+<div class='col-lg-6 col-sm-6 col-md-6' style=""><a  href="{% url 'api-doc-links' %}"  style=" float:right" class= " " ><b  style="text-transform: capitalize"><u> Next</u> </b></a></div>
+
+</div>
+
+
+</div>
+</div>
+</div>
+</section>
+
+
+
+{% endblock %}
+
+
+{% block include_scripts %}
+  
+{% endblock %}

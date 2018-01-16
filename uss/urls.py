@@ -20,5 +20,8 @@ urlpatterns = [
 
     url(r'^admin/', admin.site.urls),
     url(r'', include('shortener.urls')),
+    url(r'^api/', include('shortener.api.urls')),
+    url(r'^api-doc/', include('api_doc.urls')),
+   
 
 ]

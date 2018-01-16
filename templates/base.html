@@ -34,6 +34,17 @@
         
     <!-- Custom styles for this template -->
     <link href='{% static "shortener/css/grayscale.min.css" %}' rel="stylesheet">
+ <style>
+.navbar a:hover{
+  background-color: red;
+}
+
+
+
+#dp a{
+  color:black;
+}
+</style>
     {% block css %}
     {% endblock %}
 
@@ -46,13 +57,13 @@
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
       <div class="container">
-        <a class="navbar-brand js-scroll-trigger" href="/#page-top">Shorten Url</a>
+        <a class="navbar-brand js-scroll-trigger" href="/#page-top" style="text-transform: capitalize; ">Shorten Url</a>
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           Menu
           <i class="fa fa-bars"></i>
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
-          <ul class="navbar-nav ml-auto">
+          <ul class="navbar-nav ml-auto" style="text-transform: capitalize; ">
             {% if not request.user.is_authenticated %}
             <li class="nav-item">
               <a class="nav-link " href="{% url 'register' %}">Sign up </a>
@@ -73,6 +84,25 @@
             <li class="nav-item">
               <a class="nav-link js-scroll-trigger" href="{% url 'ubank_page' %}">Analytics</a>
             </li>
+
+
+  <li class="nav-item" onmouseover ="myfun('dpcaret','dp')"  onmouseleave="myfun2('dpcaret','dp')">
+          <a class="nav-link" href="#!" >Developers API  <i id="dpcaret" class="fa fa-caret-down"></i></a>    
+          <div class=" collapse " id='dp' style="background-color: rgba(255, 255, 255, 1.0); " >
+           <u >
+
+<a href="{% url 'api-doc-start'%}" class="list-group-item" >Getting Started</a>
+
+<a class="list-group-item "  href="{% url 'api-doc-auth'%}">Authentication</a>
+<a href="{% url 'api-doc-req-resp' %}" class="list-group-item " >Request-Response Formats</a>
+<a href="{% url 'api-doc-links' %}" class="list-group-item " >Links</a>
+
+</u>
+          </div>
+        </li>
+
+
+
 
             <li class="nav-item">
               <a class="nav-link js-scroll-trigger" href="/#about">About Us</a>
@@ -101,9 +131,9 @@
     <!-- Footer -->
     <footer>
 
-  <nav class="navbar navbar-expand-lg navbar-light fixed-bottom" id="mainNav">
-      <div class="container">
-        <a class="navbar-brand" href="https://www.linkedin.com/in/manoj-jeswani-28b6b413a/">Developers</a>
+  <nav class="navbar navbar-expand-lg navbar-light fixed-bottom" id="mainNav"  style="background-color: rgba(0,0, 0, 0.5); ">
+      <div class="container" style="text-transform: capitalize; ">
+        <a class="navbar-brand" href="https://www.linkedin.com/in/manoj-jeswani-28b6b413a/">Meet Developer</a>
        
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#bnavbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           Base Menu
@@ -152,6 +182,58 @@
 
     <!-- Custom scripts for this template -->
     <script src='{% static "shortener/js/grayscale.min.js"  %}'></script>
+
+<script type="text/javascript">
+
+
+function myfun(caret,divid)
+{
+      
+if ( document.getElementById(caret).classList.contains('fa-caret-down') && document.getElementById(divid).classList.contains('collapse')  )
+ {
+     document.getElementById(caret).classList.remove('fa-caret-down');
+
+     document.getElementById(caret).classList.add('fa-caret-up');
+
+     document.getElementById(divid).classList.remove('collapse');
+
+     document.getElementById(divid).classList.add('list-group');
+     document.getElementById(divid).classList.add('collapse-show');
+
+
+ } 
+
+
+
+
+
+
+
+}
+  
+
+function myfun2(caret,divid)
+{
+
+   if ( document.getElementById(caret).classList.contains('fa-caret-up') && document.getElementById(divid).classList.contains('collapse-show')   )
+
+{
+       document.getElementById(caret).classList.remove('fa-caret-up');
+
+       document.getElementById(caret).classList.add('fa-caret-down');
+
+     document.getElementById(divid).classList.remove('collapse-show');
+
+     document.getElementById(divid).classList.add('collapse');
+
+document.getElementById(divid).classList.remove('list-group');
+     
+}
+  
+}
+</script>
+
+
 
 {% block include_scripts %}
 
