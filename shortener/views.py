@@ -325,6 +325,7 @@ def analytics_page(request,shortcode=None,country=None):
 	cqset=""
 	bol=0
 	obj=get_object_or_404(urlss,shortcode=shortcode)
+
 	ipqset=obj.clickevent.req_ips.all()
 	
 	# print(ClickEvent.objects.filter(urlss_url=obj).annotate(total=Count('req_ips__ccountry')))
@@ -337,7 +338,6 @@ def analytics_page(request,shortcode=None,country=None):
 
 	cqset=d
 			
-
 	if country!='all':
 		spcqset=obj.clickevent.req_ips.filter(ccountry=country.replace("_"," "))
 		d={}
@@ -399,6 +399,7 @@ def short_page(request,shortcode=None,msg=None):
 			obj.owner="A"
 			obj.tag=got_tag
 			obj.save()
+			ClickEvent.objects.create(urlss_url=obj)		 	
 
 			qs=Profiles.objects.all()
 			for ob in qs:
@@ -408,7 +409,6 @@ def short_page(request,shortcode=None,msg=None):
 			pobj=ob
 			pobj.reg_urls.add(obj)
 			pobj.save()	
-					 	
 			added_msg="Url added.."
 			print('yes')
 
